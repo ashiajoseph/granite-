@@ -60,3 +60,4 @@ group :development, :test do
   gem "rubocop-rails"
 end
 # other gems if any
+gem "react-rails"
