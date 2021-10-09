@@ -1,1 +1,7 @@
 <H1>---- Index action of Task Controller ----</H1>
+<% @tasks.each do |task| %>
+  <p>
+    <%= task.id %>
+    <%= task.title %>
+  </p>
+<% end %>
