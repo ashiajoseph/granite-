@@ -33,3 +33,4 @@ en:
   task:
     slug:
       immutable: "is immutable!"
+  successfully_created: "Task was successfully created!"

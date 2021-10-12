@@ -10,16 +10,6 @@ class Task < ApplicationRecord
   private
 
     def set_slug
-      itr = 1
-      loop do
-        title_slug = title.parameterize
-        slug_candidate = itr > 1 ? "#{title_slug}-#{itr}" : title_slug
-        break self.slug = slug_candidate unless Task.exists?(slug: slug_candidate)
-
-        itr += 1
-      end
-    end
-    def set_slug
       title_slug = title.parameterize
       regex_pattern = "slug #{Constants::DB_REGEX_OPERATOR} ?"
       latest_task_slug = Task.where(
@@ -34,5 +24,11 @@ class Task < ApplicationRecord
       end
       slug_candidate = slug_count.positive? ? "#{title_slug}-#{slug_count + 1}" : title_slug
       self.slug = slug_candidate
+    end
+
+    def slug_not_changed
+      if slug_changed? && self.persisted?
+        errors.add(:slug, t("task.slug.immutable"))
+      end
     end
 end
