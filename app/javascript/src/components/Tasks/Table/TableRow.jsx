@@ -2,7 +2,7 @@ import React from "react";
 
 import PropTypes from "prop-types";
 
-const TableRow = ({ data, showTask, destroyTask }) => {
+const TableRow = ({ data, destroyTask, showTask }) => {
   return (
     <tbody className="bg-white divide-y divide-gray-200">
       {data.map(rowData => (
@@ -12,6 +12,14 @@ const TableRow = ({ data, showTask, destroyTask }) => {
             leading-8 text-bb-purple capitalize truncate"
           >
             {rowData.title}
+          </td>
+          <td
+            className="px-6 py-4 text-sm font-medium
+            leading-5 text-gray-900 whitespace-no-wrap"
+          >
+            {
+              rowData.assigned_user_id /* chapter 38 - rowData.assigned_user.name*/
+            }
           </td>
           <td className="px-6 py-4 text-sm font-medium leading-5 text-right cursor-pointer">
             <a
@@ -41,6 +49,7 @@ const TableRow = ({ data, showTask, destroyTask }) => {
 
 TableRow.propTypes = {
   data: PropTypes.array.isRequired,
+  destroyTask: PropTypes.func,
   showTask: PropTypes.func
 };
 
