@@ -34,4 +34,4 @@ en:
     not_found: "Task not found"
     slug:
       immutable: "is immutable!"
-  successfully_created: "Task was successfully created!"
+  successfully_created: "%{entity} was successfully created!"
