@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   before_action :authenticate_user_using_x_auth_token
 
   def create
-    comment = Comment.new(comment_params.merge(user: current_user))
+    comment = @task.comments.new(comment_params.merge(user: current_user))
     if comment.save
       render status: :ok, json: {}
     else
@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
     def load_task
       @task = Task.find_by(id: comment_params[:task_id])
       unless @task
-        render status: :not_found, json: { error: t("not_found", entity: "Task") }
+        render status: :not_found, json: { error: t("task.not_found") }
       end
     end
 
