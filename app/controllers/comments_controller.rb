@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
     def load_task
       @task = Task.find_by(id: comment_params[:task_id])
       unless @task
-        render status: :not_found, json: { error: t("task.not_found") }
+        render status: :not_found, json: { error: t("not_found", entity: "Task") }
       end
     end
 
