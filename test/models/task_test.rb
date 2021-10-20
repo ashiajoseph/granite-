@@ -26,7 +26,7 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   def test_task_title_should_not_exceed_maximum_length
-    @task.title = "a" * 100
+    @task.title = "a" * 130
     assert_not @task.valid?
   end
 

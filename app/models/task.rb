@@ -10,7 +10,7 @@ class Task < ApplicationRecord
   belongs_to :task_owner, foreign_key: "task_owner_id", class_name: "User"
   has_many :comments, dependent: :destroy
 
-  validates :title, presence: true, length: { maximum: 50 }
+  validates :title, presence: true, length: { maximum: 125 }
   validates :slug, uniqueness: true
   validate :slug_not_changed
   before_create :set_slug
