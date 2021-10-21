@@ -1,8 +1,14 @@
 # frozen_string_literal: true
 
-Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+require "sidekiq/web"
+require "sidekiq/cron/web"
 
+Rails.application.routes.draw do
+  def draw(routes_name)
+    instance_eval(File.read(Rails.root.join("config/routes/#{routes_name}.rb")))
+  end
+
+  draw :sidekiq
   defaults format: :json do
     resources :tasks, except: %i[new edit], param: :slug
     resources :users, only: %i[index create]
